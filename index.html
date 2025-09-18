@@ -47,15 +47,13 @@
       animation: pulse 4s ease-in-out infinite;
     }
 
-    /* Pulsasyon animasyonu */
+    /* Pulsasyon animasyonu - sadece opacity değişiyor */
     @keyframes pulse {
       0%, 100% {
         opacity: 0.05;
-        transform: translate(-50%, -50%) scale(1);
       }
       50% {
         opacity: 0.15;
-        transform: translate(-50%, -50%) scale(1.05);
       }
     }
 
@@ -67,6 +65,7 @@
       top: 0; left: 0;
       z-index: 0;
       pointer-events: none;
+      overflow: hidden;
     }
 
     .star {
@@ -74,16 +73,24 @@
       background: white;
       border-radius: 50%;
       opacity: 0.8;
-      animation: twinkle 3s infinite alternate;
+
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
     }
 
-    /* Yanıp sönme animasyonu */
-    @keyframes twinkle {
-      from {
-        opacity: 0.2;
+    /* Yıldızların aşağı doğru kayma animasyonu */
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px);
+        opacity: 0;
       }
-      to {
+      10% {
         opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
       }
     }
 
@@ -279,16 +286,23 @@
     for (let i = 0; i < 100; i++) {
       const star = document.createElement('div');
       star.classList.add('star');
-      star.style.top = `${Math.random() * 100}%`;
+      
+      // Yıldızın yatay konumu
       star.style.left = `${Math.random() * 100}%`;
-      star.style.opacity = Math.random() * 0.8 + 0.2;
+      
+      // Başlangıçta rastgele yukarıda bir yerde başlasın
+      star.style.top = `${Math.random() * 100 - 20}vh`;  // -20vh'den başlayabilir
+
       const size = Math.random() * 2 + 1;
       star.style.width = size + 'px';
       star.style.height = size + 'px';
+      star.style.opacity = Math.random() * 0.8 + 0.2;
 
-      // Animasyon süresi ve delayi rastgele yap
-      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      star.style.animationDelay = (Math.random() * 5) + 's';
+      // Animasyon süresi (3 ila 8 saniye arası)
+      star.style.animationDuration = (Math.random() * 5 + 3) + 's';
+
+      // Animasyon başlangıç gecikmesi
+      star.style.animationDelay = (Math.random() * 8) + 's';
 
       starsContainer.appendChild(star);
     }
@@ -297,8 +311,8 @@
     window.addEventListener('scroll', () => {
       const scrollPos = window.scrollY;
       const bgText = document.querySelector('.background-text');
-      // 0.3 kat hızda kaydırma
-      bgText.style.transform = `translate(-50%, calc(-50% + ${scrollPos * 0.3}px)) scale(1)`;
+      // sadece translateY ekle, translateX sabit kalıyor
+      bgText.style.transform = `translate(-50%, calc(-50% + ${scrollPos * 0.3}px))`;
     });
   </script>
 </body>
