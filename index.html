@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>no1cii</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts ve FontAwesome -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
   <style>
-    /* Genel stil */
     body {
       margin: 0;
       padding: 0;
@@ -21,7 +20,6 @@
       position: relative;
     }
 
-    /* Günün saatine göre tema renkleri */
     body.light {
       background: linear-gradient(to bottom right, #a18cd1, #fbc2eb);
       color: #222;
@@ -31,7 +29,6 @@
       color: #fff;
     }
 
-    /* Arka plan “no1cii” yazısı */
     .background-text {
       position: fixed;
       top: 20%;
@@ -39,15 +36,14 @@
       transform: translate(-50%, -50%);
       font-size: 10vw;
       font-family: 'Orbitron', sans-serif;
-      color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.15); /* Görünürlüğü artırdık */
       white-space: nowrap;
       user-select: none;
-      z-index: 0;
+      z-index: 1;
       pointer-events: none;
       animation: pulse 4s ease-in-out infinite;
     }
 
-    /* Pulsasyon animasyonu - sadece opacity değişiyor */
     @keyframes pulse {
       0%, 100% {
         opacity: 0.05;
@@ -57,7 +53,6 @@
       }
     }
 
-    /* Yıldızlar */
     .stars {
       position: fixed;
       width: 100%;
@@ -73,13 +68,11 @@
       background: white;
       border-radius: 50%;
       opacity: 0.8;
-
       animation-name: fall;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
     }
 
-    /* Yıldızların aşağı doğru kayma animasyonu */
     @keyframes fall {
       0% {
         transform: translateY(-10px);
@@ -94,10 +87,9 @@
       }
     }
 
-    /* İçerik */
     .content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -107,7 +99,6 @@
       text-align: center;
     }
 
-    /* Hoş Geldin animasyonu (fade-in + kayma) */
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
@@ -126,7 +117,6 @@
       }
     }
 
-    /* Profil fotoğrafı */
     .profile-img {
       width: 150px;
       height: 150px;
@@ -135,13 +125,12 @@
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
       transition: transform 0.3s ease-in-out;
       cursor: pointer;
-      z-index: 10;
     }
+
     .profile-img:hover {
       transform: scale(1.1);
     }
 
-    /* Bağlantılar ve ikonlar */
     .links {
       margin-top: 1rem;
       display: flex;
@@ -171,12 +160,10 @@
       transform: scale(1.1);
     }
 
-    /* İkonlar boyutu */
     .links a i {
       font-size: 1.4rem;
     }
 
-    /* Dark/Light tema butonu */
     .theme-toggle {
       position: fixed;
       top: 15px;
@@ -198,7 +185,28 @@
       background: #a569e1;
     }
 
-    /* Mobil uyumluluk */
+    /* Hakkımda Bölümü */
+    .about-section {
+      padding: 60px 20px;
+      background: rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #c084fc;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
     @media (max-width: 600px) {
       .background-text {
         font-size: 20vw;
@@ -218,27 +226,6 @@
       }
       .links a i {
         font-size: 1.1rem;
-      .about-section {
-        padding: 60px 20px;
-        background: rgba(0, 0, 0, 0.2); /* şeffaf arka plan */
-        text-align: center;
-        z-index: 2;
-        position: relative;
-        }
-
-        .about-section h2 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: #c084fc;
-        }
-
-        .about-section p {
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.6;
-}
-
       }
     }
   </style>
@@ -270,8 +257,17 @@
     </div>
   </div>
 
+  <!-- Hakkımda Bölümü -->
+  <div class="about-section">
+    <h2>Hakkımda</h2>
+    <p>
+      Merhaba! Ben <strong>no1cii</strong>. Bu siteyi kendimi tanıtmak, bağlantılarımı paylaşmak ve ilgi alanlarımı göstermek için oluşturdum. Müzik, dijital tasarım ve teknolojiyle ilgileniyorum. Daha fazlası için bağlantılara göz atabilirsin!
+    </p>
+  </div>
+
   <script>
-    // Günün saatine göre tema belirle
+    // Tema ayarı
+    const themeToggle = document.querySelector('.theme-toggle');
     function setThemeByTime() {
       const hour = new Date().getHours();
       if (hour >= 7 && hour < 19) {
@@ -285,57 +281,32 @@
       }
     }
 
-    // Tema değiştirme butonu
-    const themeToggle = document.querySelector('.theme-toggle');
     themeToggle.addEventListener('click', () => {
-      if (document.body.classList.contains('dark')) {
-        document.body.classList.remove('dark');
-        document.body.classList.add('light');
-        themeToggle.textContent = 'Dark Mode';
-      } else {
+      if (document.body.classList.contains('light')) {
         document.body.classList.remove('light');
         document.body.classList.add('dark');
         themeToggle.textContent = 'Light Mode';
+      } else {
+        document.body.classList.remove('dark');
+        document.body.classList.add('light');
+        themeToggle.textContent = 'Dark Mode';
       }
     });
 
-    // Başlangıçta temayı ayarla
     setThemeByTime();
 
-    // Yıldızları oluştur ve animasyon delay ver
+    // Yıldızlar oluştur
     const starsContainer = document.querySelector('.stars');
     for (let i = 0; i < 100; i++) {
       const star = document.createElement('div');
       star.classList.add('star');
-      
-      // Yıldızın yatay konumu
-      star.style.left = `${Math.random() * 100}%`;
-      
-      // Başlangıçta rastgele yukarıda bir yerde başlasın
-      star.style.top = `${Math.random() * 100 - 20}vh`;  // -20vh'den başlayabilir
-
+      star.style.top = `${Math.random() * 100}vh`;
+      star.style.left = `${Math.random() * 100}vw`;
       const size = Math.random() * 2 + 1;
-      star.style.width = size + 'px';
-      star.style.height = size + 'px';
-      star.style.opacity = Math.random() * 0.8 + 0.2;
-
-      // Animasyon süresi (3 ila 8 saniye arası)
-      star.style.animationDuration = (Math.random() * 5 + 3) + 's';
-
-      // Animasyon başlangıç gecikmesi
-      star.style.animationDelay = (Math.random() * 8) + 's';
-
+      star.style.width = star.style.height = `${size}px`;
+      star.style.animationDuration = `${Math.random() * 10 + 5}s`;
       starsContainer.appendChild(star);
     }
-
-    // Parallax efekt (arka plan yazısını yavaşça hareket ettir)
-    window.addEventListener('scroll', () => {
-      const scrollPos = window.scrollY;
-      const bgText = document.querySelector('.background-text');
-      // sadece translateY ekle, translateX sabit kalıyor
-      bgText.style.transform = `translate(-50%, calc(-50% + ${scrollPos * 0.3}px))`;
-    });
   </script>
 </body>
 </html>
-
