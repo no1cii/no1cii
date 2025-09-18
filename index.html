@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>no1cii</title>
   
-  <!-- Şık font ekliyoruz (Orbitron) -->
+  <!-- Orbitron Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
   <style>
@@ -59,6 +59,7 @@
       justify-content: center;
       height: 100%;
       text-align: center;
+      padding: 0 1rem;
     }
 
     h1 {
@@ -72,10 +73,28 @@
       margin: 0 15px;
       font-size: 1.2rem;
       transition: 0.3s;
+      word-break: break-word;
     }
 
     .links a:hover {
       color: #fff;
+    }
+
+    /* Mobil uyumluluk */
+    @media (max-width: 600px) {
+      .background-text {
+        font-size: 20vw;
+        top: 15%;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .links a {
+        font-size: 1rem;
+        margin: 0 8px;
+      }
     }
   </style>
 </head>
@@ -85,12 +104,11 @@
 
   <div class="content">
     <h1>Hoş Geldin!</h1>
-    <p>Bağlantılarım:</p>
+    <p>Benim bağlantılarım:</p>
     <div class="links">
       <a href="https://www.instagram.com/13diyenkedi" target="_blank">Instagram</a>
       <a href="https://discord.gg/s73C46YrX5" target="_blank">Discord</a>
       <a href="https://open.spotify.com/user/4ilx1ddl1n21swmdtv44wprpo" target="_blank">Spotify</a>
-      <a href="https://github.com/no1cii" target="_blank>">Github</a>
     </div>
   </div>
 
@@ -109,4 +127,3 @@
   </script>
 </body>
 </html>
-
